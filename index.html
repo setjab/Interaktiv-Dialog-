@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktiv Dialog Presentasjon</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #FFD700;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .lytte { background-color: #4CAF50; color: white; }
+        .uttrykke { background-color: #FF5733; color: white; }
+        .mote { background-color: #007BFF; color: white; }
+        .utsette { background-color: #FFC300; color: white; }
+        .alle { background-color: #8A2BE2; color: white; }
+
+        .content {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interaktiv Dialog Presentasjon</h1>
+        <div class="buttons">
+            <button class="lytte" onclick="showSection('lytte')">Lytte</button>
+            <button class="uttrykke" onclick="showSection('uttrykke')">Uttrykke</button>
+            <button class="mote" onclick="showSection('mote')">Møte</button>
+            <button class="utsette" onclick="showSection('utsette')">Utsette</button>
+            <button class="alle" onclick="showSection('alle')">Alle Ferdigheter</button>
+        </div>
+    </div>
+
+    <!-- Lytte Seksjon -->
+    <div id="lytte" class="content">
+        <h1>Lytte</h1>
+        <p>Lytting er grunnlaget for enhver god dialog. Det handler om å være oppmerksom, forstå hva som blir sagt, og gi plass til andre.</p>
+        <button class="back-btn" onclick="goBack()">Tilbake</button>
+    </div>
+
+    <!-- Uttrykke Seksjon -->
+    <div id="uttrykke" class="content">
+        <h1>Uttrykke</h1>
+        <p>Å uttrykke seg tydelig og respektfullt bidrar til bedre forståelse i dialogen. Det handler om å dele tanker og følelser på en måte som inviterer til samarbeid.</p>
+        <button class="back-btn" onclick="goBack()">Tilbake</button>
+    </div>
+
+    <!-- Møte Seksjon -->
+    <div id="mote" class="content">
+        <h1>Møte</h1>
+        <p>Å møte det som blir sagt uten å dømme skaper rom for ekte forståelse. Dette er hjertet av en god dialog.</p>
+        <button class="back-btn" onclick="goBack()">Tilbake</button>
+    </div>
+
+    <!-- Utsette Seksjon -->
+    <div id="utsette" class="content">
+        <h1>Utsette</h1>
+        <p>Å utsette konklusjoner og reaksjoner gir tid til å reflektere og forstå helheten. Dette er en viktig ferdighet i dialog.</p>
+        <button class="back-btn" onclick="goBack()">Tilbake</button>
+    </div>
+
+    <!-- Alle Ferdigheter Seksjon -->
+    <div id="alle" class="content">
+        <h1>Alle Ferdigheter</h1>
+        <p>De fire ferdighetene: Lytte, Uttrykke, Møte, og Utsette, jobber sammen for å skape en balansert og effektiv dialog.</p>
+        <button class="back-btn" onclick="goBack()">Tilbake</button>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Skjul alle seksjoner
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Vis den valgte seksjonen
+            document.getElementById(sectionId).classList.add('active');
+
+            // Skjul knapper
+            document.querySelector('.container').style.display = 'none';
+        }
+
+        function goBack() {
+            // Gå tilbake til hovedsiden
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Vis knapper
+            document.querySelector('.container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
