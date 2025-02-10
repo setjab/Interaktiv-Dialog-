@@ -94,9 +94,11 @@
         <div class="ball">Møte</div>
         <div class="ball">Utsette</div>
     </div>
+    <!-- Tilbake-knappen -->
     <button class="back-btn" onclick="window.location.href='index.html'">Tilbake</button>
 
     <script>
+        // Hente canvas og sette opp
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
 
@@ -153,6 +155,7 @@
             requestAnimationFrame(animate);
         }
 
+        // Start animasjonen
         createBigBang();
         animate();
     </script>
