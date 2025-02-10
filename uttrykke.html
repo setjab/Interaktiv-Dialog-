@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alle Ferdigheter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
 
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: rainbow 3s infinite;
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .balls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            margin-top: 2rem;
+        }
+
+        .ball {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, white, #4CAF50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+            color: white;
+        }
+
+        .ball:nth-child(2) { background: radial-gradient(circle, white, #FF5733); }
+        .ball:nth-child(3) { background: radial-gradient(circle, white, #007BFF); }
+        .ball:nth-child(4) { background: radial-gradient(circle, white, #FFC300); }
+
+        .back-btn {
+            margin-top: 40px;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <h1>Alle Ferdigheter</h1>
+    <div class="balls">
+        <div class="ball">Lytte</div>
+        <div class="ball">Uttrykke</div>
+        <div class="ball">Møte</div>
+        <div class="ball">Utsette</div>
+    </div>
+    <button class="back-btn" onclick="window.location.href='index.html'">Tilbake</button>
+
+    <script>
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ["red", "orange", "yellow", "green", "blue", "purple", "white"];
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = Math.random() * 3 + 1;
+                this.color = color;
+                this.speedX = (Math.random() - 0.5) * 4;
+                this.speedY = (Math.random() - 0.5) * 4;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.radius -= 0.02;
+                if (this.radius < 0) this.radius = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function createBigBang() {
+            for (let i = 0; i < 500; i++) {
+                const x = canvas.width / 2;
+                const y = canvas.height / 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((particle, index) => {
+                if (particle.radius <= 0) {
+                    particles.splice(index, 1);
+                } else {
+                    particle.update();
+                    particle.draw();
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        createBigBang();
+        animate();
+    </script>
+</body>
+</html>
