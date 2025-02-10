@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaktiv Dialog Presentasjon</title>
+    <title>Dialog er mye mer enn kommunikasjon</title>
     <style>
         body {
             margin: 0;
@@ -19,36 +19,44 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 6rem;
             margin-bottom: 2rem;
-            color: #FFD700;
-            animation: fadeIn 2s ease-in-out;
+            animation: rainbow 3s infinite;
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .buttons {
             display: flex;
-            gap: 20px;
+            gap: 40px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 30px 50px;
+            font-size: 2.5rem;
             font-weight: bold;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s;
         }
 
         button:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
         .lytte { background-color: #4CAF50; color: white; }
@@ -68,24 +76,50 @@
 
         .back-btn {
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1rem;
+            padding: 20px 40px;
+            font-size: 1.5rem;
             background-color: #555;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+        .balls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 2rem;
+        }
+
+        .ball {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, white, #4CAF50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .ball:nth-child(2) { background: radial-gradient(circle, white, #FF5733); }
+        .ball:nth-child(3) { background: radial-gradient(circle, white, #007BFF); }
+        .ball:nth-child(4) { background: radial-gradient(circle, white, #FFC300); }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Interaktiv Dialog Presentasjon</h1>
+        <h1>Dialog er mye mer enn kommunikasjon</h1>
         <div class="buttons">
             <button class="lytte" onclick="showSection('lytte')">Lytte</button>
             <button class="uttrykke" onclick="showSection('uttrykke')">Uttrykke</button>
@@ -95,62 +129,51 @@
         </div>
     </div>
 
-    <!-- Lytte Seksjon -->
+    <!-- Seksjoner -->
     <div id="lytte" class="content">
         <h1>Lytte</h1>
         <p>Lytting er grunnlaget for enhver god dialog. Det handler om å være oppmerksom, forstå hva som blir sagt, og gi plass til andre.</p>
         <button class="back-btn" onclick="goBack()">Tilbake</button>
     </div>
 
-    <!-- Uttrykke Seksjon -->
     <div id="uttrykke" class="content">
         <h1>Uttrykke</h1>
-        <p>Å uttrykke seg tydelig og respektfullt bidrar til bedre forståelse i dialogen. Det handler om å dele tanker og følelser på en måte som inviterer til samarbeid.</p>
+        <p>Å uttrykke seg tydelig og respektfullt bidrar til bedre forståelse i dialogen.</p>
         <button class="back-btn" onclick="goBack()">Tilbake</button>
     </div>
 
-    <!-- Møte Seksjon -->
     <div id="mote" class="content">
         <h1>Møte</h1>
-        <p>Å møte det som blir sagt uten å dømme skaper rom for ekte forståelse. Dette er hjertet av en god dialog.</p>
+        <p>Å møte det som blir sagt uten å dømme skaper rom for ekte forståelse.</p>
         <button class="back-btn" onclick="goBack()">Tilbake</button>
     </div>
 
-    <!-- Utsette Seksjon -->
     <div id="utsette" class="content">
         <h1>Utsette</h1>
-        <p>Å utsette konklusjoner og reaksjoner gir tid til å reflektere og forstå helheten. Dette er en viktig ferdighet i dialog.</p>
+        <p>Å utsette konklusjoner gir tid til å reflektere og forstå helheten.</p>
         <button class="back-btn" onclick="goBack()">Tilbake</button>
     </div>
 
-    <!-- Alle Ferdigheter Seksjon -->
     <div id="alle" class="content">
         <h1>Alle Ferdigheter</h1>
-        <p>De fire ferdighetene: Lytte, Uttrykke, Møte, og Utsette, jobber sammen for å skape en balansert og effektiv dialog.</p>
+        <div class="balls">
+            <div class="ball">Lytte</div>
+            <div class="ball">Uttrykke</div>
+            <div class="ball">Møte</div>
+            <div class="ball">Utsette</div>
+        </div>
         <button class="back-btn" onclick="goBack()">Tilbake</button>
     </div>
 
     <script>
         function showSection(sectionId) {
-            // Skjul alle seksjoner
-            document.querySelectorAll('.content').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Vis den valgte seksjonen
+            document.querySelectorAll('.content').forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-
-            // Skjul knapper
             document.querySelector('.container').style.display = 'none';
         }
 
         function goBack() {
-            // Gå tilbake til hovedsiden
-            document.querySelectorAll('.content').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Vis knapper
+            document.querySelectorAll('.content').forEach(section => section.classList.remove('active'));
             document.querySelector('.container').style.display = 'block';
         }
     </script>
