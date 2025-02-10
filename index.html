@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dialog er mye mer enn kommunikasjon</title>
+    <title>Alle Ferdigheter</title>
     <style>
         body {
             margin: 0;
@@ -15,15 +15,12 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden;
             text-align: center;
         }
 
-        .container {
-            width: 90%;
-        }
-
         h1 {
-            font-size: 6rem;
+            font-size: 7rem;
             margin-bottom: 2rem;
             animation: rainbow 3s infinite;
             background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
@@ -37,72 +34,31 @@
             100% { background-position: 0% 50%; }
         }
 
-        .buttons {
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        button {
-            padding: 30px 50px;
-            font-size: 2.5rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.2);
-        }
-
-        .lytte { background-color: #4CAF50; color: white; }
-        .uttrykke { background-color: #FF5733; color: white; }
-        .mote { background-color: #007BFF; color: white; }
-        .utsette { background-color: #FFC300; color: white; }
-        .alle { background-color: #8A2BE2; color: white; }
-
-        .content {
-            display: none;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .active {
-            display: block;
-        }
-
-        .back-btn {
-            margin-top: 20px;
-            padding: 20px 40px;
-            font-size: 1.5rem;
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
         .balls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
             margin-top: 2rem;
+            animation: dance 3s ease-in-out;
+        }
+
+        @keyframes dance {
+            0% { transform: translateY(-50px); }
+            50% { transform: translateY(50px); }
+            100% { transform: translateY(0); }
         }
 
         .ball {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             background: radial-gradient(circle, white, #4CAF50);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
+            font-size: 2rem;
+            color: black;
             font-weight: bold;
             animation: bounce 2s infinite ease-in-out;
         }
@@ -115,67 +71,32 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
+
+        .ball-text {
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .back-btn {
+            margin-top: 40px;
+            padding: 20px 40px;
+            font-size: 2rem;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dialog er mye mer enn kommunikasjon</h1>
-        <div class="buttons">
-            <button class="lytte" onclick="showSection('lytte')">Lytte</button>
-            <button class="uttrykke" onclick="showSection('uttrykke')">Uttrykke</button>
-            <button class="mote" onclick="showSection('mote')">Møte</button>
-            <button class="utsette" onclick="showSection('utsette')">Utsette</button>
-            <button class="alle" onclick="showSection('alle')">Alle Ferdigheter</button>
-        </div>
+    <h1>Alle Ferdigheter</h1>
+    <div class="balls">
+        <div class="ball"><span class="ball-text">Lytte</span></div>
+        <div class="ball"><span class="ball-text">Uttrykke</span></div>
+        <div class="ball"><span class="ball-text">Møte</span></div>
+        <div class="ball"><span class="ball-text">Utsette</span></div>
     </div>
-
-    <!-- Seksjoner -->
-    <div id="lytte" class="content">
-        <h1>Lytte</h1>
-        <p>Lytting er grunnlaget for enhver god dialog. Det handler om å være oppmerksom, forstå hva som blir sagt, og gi plass til andre.</p>
-        <button class="back-btn" onclick="goBack()">Tilbake</button>
-    </div>
-
-    <div id="uttrykke" class="content">
-        <h1>Uttrykke</h1>
-        <p>Å uttrykke seg tydelig og respektfullt bidrar til bedre forståelse i dialogen.</p>
-        <button class="back-btn" onclick="goBack()">Tilbake</button>
-    </div>
-
-    <div id="mote" class="content">
-        <h1>Møte</h1>
-        <p>Å møte det som blir sagt uten å dømme skaper rom for ekte forståelse.</p>
-        <button class="back-btn" onclick="goBack()">Tilbake</button>
-    </div>
-
-    <div id="utsette" class="content">
-        <h1>Utsette</h1>
-        <p>Å utsette konklusjoner gir tid til å reflektere og forstå helheten.</p>
-        <button class="back-btn" onclick="goBack()">Tilbake</button>
-    </div>
-
-    <div id="alle" class="content">
-        <h1>Alle Ferdigheter</h1>
-        <div class="balls">
-            <div class="ball">Lytte</div>
-            <div class="ball">Uttrykke</div>
-            <div class="ball">Møte</div>
-            <div class="ball">Utsette</div>
-        </div>
-        <button class="back-btn" onclick="goBack()">Tilbake</button>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.content').forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelector('.container').style.display = 'none';
-        }
-
-        function goBack() {
-            document.querySelectorAll('.content').forEach(section => section.classList.remove('active'));
-            document.querySelector('.container').style.display = 'block';
-        }
-    </script>
+    <button class="back-btn" onclick="history.back()">Tilbake</button>
 </body>
 </html>
